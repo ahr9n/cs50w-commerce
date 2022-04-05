@@ -1,0 +1,9 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Categories</h2>
+    <form action="{% url 'filter' %}">
+        <input type="text" class="form-control" name="category"
+               placeholder="Enter a category like cards, vehicle, etc..." autofocus>
+    </form>
+{% endblock %}
