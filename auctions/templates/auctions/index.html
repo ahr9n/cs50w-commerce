@@ -2,6 +2,60 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-
-    TODO
+    {% for item in listings %}
+        <div class="container pb-5 mt-n2 mt-md-n3">
+            <div class="row">
+                <div class="col-xl-9 col-md-8">
+                    <!-- Item-->
+                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                        <div class="media d-block d-sm-flex text-center text-sm-left">
+                            <a class="cart-item-thumb mx-auto mr-sm-4" href="{% url 'listing' item.id %}">
+                                <img class="rounded" src="{{ item.image_url }}" alt="{{ item.title }}"
+                                     style="width: 240px; height: 240px; object-fit: cover;">
+                            </a>
+                            <div class="media-body pt-1">
+                                <h3 class="product-card-title font-weight-semibold"><a
+                                        href="{% url 'listing' item.id %}">
+                                    {{ item.title }}</a></h3>
+                                <div class="font-size-sm mb-1"><span class="text-muted mr-2">
+                                Description:</span>{{ item.description }}
+                                </div>
+                                <div class="font-size-sm mb-1"><span class="text-muted mr-2">
+                                Author:</span>{{ item.user }}
+                                </div>
+                                {% if item.category %}
+                                    <div class="font-size-sm mb-1"><span class="text-muted mr-2">
+                                Category:</span>{{ item.category | title }}
+                                    </div>
+                                {% else %}
+                                    <div class="font-size-sm mb-1"><span class="text-muted mr-2">
+                                Category:</span> Not listed.
+                                    </div>
+                                {% endif %}
+                                {% if item.price %}
+                                    <div class="font-size-sm text-success mb-1"><span class="text-muted mr-2">Price:</span>${{ item.price }}</div>
+                                {% else %}
+                                    <div class="font-size-sm text-danger mb-1"><span class="text-muted mr-2">Price:</span>Not specified</div>
+                                {% endif %}
+                                {% if item.active %}
+                                    <div class="font-size-lg text-primary mb-1"><span class="text-muted mr-2">Elegibility Status:</span>Avaiable</div>
+                                {% else %}
+                                    <div class="font-size-lg text-danger mb-1"><span class="text-muted mr-2">Elegibility Status:</span>Lot Sold</div>
+                                {% endif %}
+                                <span class="text-muted">Created {{ item.created_at }} </span>
+                                {% if item in user.wishlist.all %}
+                                    <a class="text-danger" href="{% url 'unwatch' item.id %}"><i
+                                            class="fa fa-heart"></i></a>
+                                {% else %}
+                                    <a class="text-danger" href="{% url 'watch' item.id %}"><i
+                                            class="far fa-heart"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item-->
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
