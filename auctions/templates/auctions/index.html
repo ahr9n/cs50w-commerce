@@ -18,32 +18,32 @@
                                         href="{% url 'listing' item.id %}">
                                     {{ item.title }}</a></h3>
                                 <div class="font-size-sm mb-1"><span class="text-muted mr-2">
-                                Description:</span>{{ item.description }}
+                                Description: </span>{{ item.description }}
                                 </div>
                                 <div class="font-size-sm mb-1"><span class="text-muted mr-2">
-                                Author:</span>{{ item.user }}
+                                Author: </span>{{ item.user }}
                                 </div>
                                 {% if item.category %}
                                     <div class="font-size-sm mb-1"><span class="text-muted mr-2">
-                                Category:</span>{{ item.category | title }}
+                                Category: </span>{{ item.category | title }}
                                     </div>
                                 {% else %}
                                     <div class="font-size-sm mb-1"><span class="text-muted mr-2">
-                                Category:</span> Not listed.
+                                Category: </span> Not listed.
                                     </div>
                                 {% endif %}
                                 {% if item.price %}
-                                    <div class="font-size-sm text-success mb-1"><span class="text-muted mr-2">Price:</span>${{ item.price }}</div>
+                                    <div class="font-size-sm text-success mb-1"><span class="text-muted mr-2">Price: </span>${{ item.price }}</div>
                                 {% else %}
-                                    <div class="font-size-sm text-danger mb-1"><span class="text-muted mr-2">Price:</span>Not specified</div>
+                                    <div class="font-size-sm text-danger mb-1"><span class="text-muted mr-2">Price: </span>Not specified</div>
                                 {% endif %}
-                                {% if item.active %}
-                                    <div class="font-size-lg text-primary mb-1"><span class="text-muted mr-2">Elegibility Status:</span>Avaiable</div>
+                                {% if item.winner is None %}
+                                    <div class="font-size-lg text-primary mb-1"><span class="text-muted mr-2">Status: </span>Available</div>
                                 {% else %}
-                                    <div class="font-size-lg text-danger mb-1"><span class="text-muted mr-2">Elegibility Status:</span>Lot Sold</div>
+                                    <div class="font-size-lg text-danger mb-1"><span class="text-muted mr-2">Status: </span>Sold</div>
                                 {% endif %}
-                                <span class="text-muted">Created {{ item.created_at }} </span>
-                                {% if item in user.wishlist.all %}
+                                <span class="text-muted">Created at: {{ item.created_at }} </span>
+                                {% if item in user.watchlist.all %}
                                     <a class="text-danger" href="{% url 'unwatch' item.id %}"><i
                                             class="fa fa-heart"></i></a>
                                 {% else %}

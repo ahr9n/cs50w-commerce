@@ -5,7 +5,7 @@
         <div class="pl-4 pt-3">
             {% if auction.winner is not None %}
                 {% if user == bid.user %}
-                    <h1 class="display-2 pb-5 text-success">Highest bid, you are the winner!</h1>
+                    <h2 class="display-2 pb-5 text-success" align="center">Highest bid, you are the winner!</h2>
                 {% endif %}
             {% endif %}
             <div class="row">
@@ -16,39 +16,36 @@
                     </div>
 
                     <div class="project-info-box">
-                        <p class="pt-4 pb-2 border-bottom"><b>Author:</b> {{ auction.user }}</p>
-                        <p class="pt-1 pb-2 border-bottom "><b>Current Bid:</b><span class="text-primary">
-                        {{ bid.amount }}</span>
+                        <p class="pt-4 pb-2 border-bottom"><b>Author: </b> {{ auction.user }}</p>
+                        <p class="pt-1 pb-2 border-bottom "><b>Current Bid: </b><span class="text-primary">
+                        ${{ bid.amount }}</span>
                         <p>
-
                             {% if auction.price %}
-                                <p class="pt-1 pb-2 border-bottom"><b>Price:</b> {{ auction.price }}
+                                <p class="pt-1 pb-2 border-bottom"><b>Price: </b>${{ auction.price }}
                                 </p>
                             {% else %}
-                                <p class="pt-1 pb-2 border-bottom"><b>Price:</b> Not Specified</p>
+                                <p class="pt-1 pb-2 border-bottom"><b>Price: </b>Not Specified</p>
                             {% endif %}
-
-                        <p class="pt-1 pb-2 border-bottom"><b>Created:</b> {{ auction.created_at }}</p>
-                        <p class="pt-1 pb-2 border-bottom"><b>Last Updated:</b> {{ bid.created_at }}</p>
+                        <p class="pt-1 pb-2 border-bottom"><b>Created at: </b> {{ auction.created_at }}</p>
+                        <p class="pt-1 pb-2 border-bottom"><b>Last Updated: </b> {{ bid.created_at }}</p>
                         {% if auction.category %}
-
-                            <p class="pt-1 pb-2 border-bottom"><b>Category:</b> {{ auction.category | title }}</p>
+                            <p class="pt-1 pb-2 border-bottom"><b>Category: </b> {{ auction.category | title }}</p>
                         {% else %}
-                            <p class="pt-1 pb-2 border-bottom"><b>Category:</b> Not Listed.</p>
+                            <p class="pt-1 pb-2 border-bottom"><b>Category: </b> Not Listed.</p>
                         {% endif %}
 
                         {% if auction.winner is None %}
-                            <p><b>Eligibility Status:</b><span class="text-success lead"> <strong>Lot Avaiable</strong></span>
+                            <p><b>Status:</b><span class="text-success lead"> <strong>Available</strong></span>
                             </p>
                         {% else %}
-                            <p><b>Eligibility Status:</b><span
-                                    class="text-danger lead"> <strong>Lot Sold</strong></span></p>
+                            <p><b>Status:</b><span
+                                    class="text-danger lead"> <strong>Sold</strong></span></p>
                         {% endif %}
 
                         {% if user == bid.user %}
                             {% if auction.winner is not None %}
                                 <h5 class="text-muted pt-3">{{ auction.bid_counter }} Bid(s) in total.
-                                    <span class="lead"> GG WP {{ bid.user }} :D</span></h5>
+                                    <span class="lead">Congratulations, {{ bid.user }}! 🎊</span></h5>
                             {% else %}
                                 <h5 class="text-muted pt-3">{{ auction.bid_counter }} Bid(s) so far.
                                     <span class="lead">Your bid is the current bid.</span></h5>
@@ -76,26 +73,22 @@
                                     <button disabled class="btn bg-success disabled text-light" type="submit">Winner
                                     </button>
                                 </div>
-                                <input disabled type="number" min="{{ bid.amount }}" step="any" class="form-control"
-                                       name="bid"
-                                       placeholder="Your won with a bid of: {{ bid.amount }}">
+                                <input disabled type="number" min="{{ bid.amount }}" step="0.01" max="99999999999.99" class="form-control"
+                                       name="bid" placeholder="Your won with a bid of: ${{ bid.amount }}">
                             {% else %}
                                 <div class="input-group-prepend">
                                     <button disabled class="btn bg-danger disabled text-light" type="submit">Lot Sold
                                     </button>
                                 </div>
-                                <input disabled type="number" min="{{ bid.amount }}" step="any" class="form-control"
-                                       name="bid"
-                                       placeholder="Highest bid: {{ bid.amount }}">
+                                <input disabled type="number" min="{{ bid.amount }}" step="0.01" max="99999999999.99" class="form-control"
+                                       name="bid" placeholder="Highest bid: ${{ bid.amount }}">
                             {% endif %}
                         {% else %}
                             <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary bg-info text-light" type="submit">Bid Now
-                                </button>
+                                <button class="btn btn-outline-secondary bg-info text-light" type="submit">Bid Now!</button>
                             </div>
-                            <input required type="number" min="{{ bid.amount }}" step="any" class="form-control"
-                                   name="bid"
-                                   placeholder="Current Bid: {{ bid.amount }}">
+                            <input required type="number" min="{{ bid.amount }}" step="0.01" max="99999999999.99" class="form-control"
+                                   name="bid" placeholder="Current Bid: ${{ bid.amount }}">
                         {% endif %}
                     </div>
                 </form>
@@ -133,7 +126,7 @@
                 </div>
             </div>
         {% empty %}
-            <p class="display-4 pb-5 ml-3">No comments for this auction</p>
+            <p class="display-4 pb-5 ml-3">No comments for this auction yet.</p>
         {% endfor %}
     </div>
 {% endblock %}
