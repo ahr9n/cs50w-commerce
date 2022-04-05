@@ -12,7 +12,7 @@ from .forms import AuctionListingForm, CommentForm
 
 def index(request):
     return render(request, "auctions/index.html", {
-        "listings": AuctionListing.objects.all()
+        "listings": AuctionListing.objects.all().order_by('-created_at')
     })
 
 
@@ -81,10 +81,13 @@ def insert(request):
     form = AuctionListingForm(request.POST)
     if form.is_valid():
         auction = AuctionListing(user=request.user, **form.cleaned_data)
+        if not auction.image_url:
+            auction.image_url = 'https://user-images.githubusercontent.com/52632898/161646398-6d49eca9-267f-4eab-a5a7-6ba6069d21df.png'
         auction.save()
         starting_bid = auction.starting_bid
         bid = Bid(amount=starting_bid, user=request.user, auction=auction)
         bid.save()
+        print("auction:" + auction.image_url)
         return HttpResponseRedirect(reverse('index'))
     else:
         return render(request, 'auctions/create.html', {
@@ -97,6 +100,7 @@ def listing(request, id):
     current = AuctionListing.objects.get(pk=id)
     bid = get_object_or_404(Bid, auction=current)
     comments = Comment.objects.filter(auction=current)
+    print("here:" + AuctionListing.objects.get(pk=id).image_url)
     return render(request, 'auctions/listing.html', {
         'auction': current,
         'user': request.user,
