@@ -128,7 +128,7 @@ def update_bid(request, id):
 @login_required(login_url='auctions/login.html')
 def close_bid(request, id):
     auction = get_object_or_404(AuctionListing, id=id)
-    auction.active, auction.winner = False, request.user
+    auction.active, auction.winner = False, request.user.username
     auction.save()
     return HttpResponseRedirect(reverse('index'))
 
