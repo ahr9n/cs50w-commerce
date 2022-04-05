@@ -80,7 +80,7 @@ def create(request):
 def insert(request):
     form = AuctionListingForm(request.POST)
     if form.is_valid():
-        auction = AuctionListing(author=request.user, **form.cleaned_data)
+        auction = AuctionListing(user=request.user, **form.cleaned_data)
         auction.save()
         starting_bid = auction.starting_bid
         bid = Bid(amount=starting_bid, user=request.user, auction=auction)

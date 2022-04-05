@@ -2,7 +2,7 @@
 
 {% block body %}
     <h2>Create Listing</h2> <br>
-    <form action="{% url 'create' %}" method="post">
+    <form action="{% url 'insert' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <br>
