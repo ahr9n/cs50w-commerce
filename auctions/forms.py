@@ -24,6 +24,7 @@ class AuctionListingForm(forms.Form):
     price = forms.DecimalField(
         label='Price',
         required=False,
+        initial=0.00,
         widget=forms.NumberInput(attrs={
             'class': 'form-control form-group',
             'placeholder': 'Estimated price (optional)',
@@ -58,17 +59,19 @@ class AuctionListingForm(forms.Form):
     image_url = forms.URLField(
         label='Image URL',
         required=False,
+        initial='https://user-images.githubusercontent.com/52632898/161646398-6d49eca9-267f-4eab-a5a7-6ba6069d21df.png',
         widget=forms.TextInput(attrs={
             'class': 'form-control form-group',
-            'placeholder': 'Image URL (optional)'
+            'placeholder': 'Image URL (optional)',
         }
         )
     )
 
     def clean_starting_bid(self):
-        amount = self.cleaned_data.get('starting_bid')
+        amount = float(self.cleaned_data.get('starting_bid'))
         if isinstance(amount, float) and amount > 0:
             return amount
+        print(amount)
         raise forms.ValidationError('Should be a number larger than zero!')
 
     def clean_category(self):
