@@ -1,3 +1,7 @@
+<div align="center">
+ <img style="width: 20%;" src="https://github.com/ahr9n/cs50w-commerce/blob/master/auctions/static/auctions/img/icon.png" alt="Best Place to Bid!">
+</div>
+
 # Commerce
 Project 2 for CS50’s Web Programming with Python and JavaScript.
 
@@ -24,16 +28,17 @@ This project fulfills the following requirements:
 Requires Python3 and the package installer for Python (pip) to run:
 
 * Install requirements (Django4): `pip install -r requirements.txt`
-* Refer to the project folder and:
+* After cloning the repository, refer to the project folder and:
   1. Create new migrations based on the changes in models: `python3 manage.py makemigrations`
   2. Apply the migrations to the database: `python3 manage.py migrate`
-  3. Create a superuser -to use Django Admin Interface-: `python3 manage.py createsuperuser`
+  3. Create a superuser to be able to use Django Admin Interface: `python3 manage.py createsuperuser`
   4. Run the app locally: `python3 manage.py runserver`
   5. Visit the site: `http://localhost:8000`
+  6. Enjoy!
 
 ## Topics
 Built with [`Python3.6.4`](https://www.python.org/downloads/), and [`django4.0`](https://www.djangoproject.com/).
 
 ## Future Work
-Some challenge I would make in my free-time:
+Some challenges I would make in my free-time:
 * Make nicer front-end design.
