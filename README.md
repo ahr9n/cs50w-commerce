@@ -37,7 +37,7 @@ Requires Python3 and the package installer for Python (pip) to run:
   6. Enjoy!
 
 ## Topics
-Built with [`Python3.6.4`](https://www.python.org/downloads/), and [`django4.0`](https://www.djangoproject.com/).
+Built with [`Python`](https://www.python.org/downloads/), [`Django`](https://www.djangoproject.com/), and HTML/CSS.
 
 ## Future Work
 Some challenges I would make in my free-time:
