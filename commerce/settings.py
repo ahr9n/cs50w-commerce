@@ -124,8 +124,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+# What a bug!
 
+# =============================================================================
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
@@ -133,7 +135,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Configure Django App for Heroku.
 
-# import django_heroku
-# django_heroku.settings(locals())
+import django_heroku
+django_heroku.settings(locals())
 
-# No need to thess lines :)
+# Oops need to thess lines :)
